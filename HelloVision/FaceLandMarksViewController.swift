@@ -39,8 +39,6 @@ class FaceLandMarksViewController: UIViewController {
                             continue
                         }
                         let boundingRect = faceObservation.boundingBox
-                        //let uuid = faceObservation.uuid
-                        //let conf = faceObservation.confidence
                         var landmarkRegions: [VNFaceLandmarkRegion2D] = []
                         if let faceContour = landmarks.faceContour {
                             landmarkRegions.append(faceContour)
@@ -63,7 +61,7 @@ class FaceLandMarksViewController: UIViewController {
                         if let outerLips = landmarks.outerLips {
                             landmarkRegions.append(outerLips)
                         }
-                        /*
+                        
                          if let leftEyebrow = landmarks.leftEyebrow {
                          landmarkRegions.append(leftEyebrow)
                          }
@@ -80,7 +78,7 @@ class FaceLandMarksViewController: UIViewController {
                          if let rightPupil = landmarks.rightPupil {
                          landmarkRegions.append(rightPupil)
                          }
-                         */
+                         
                         resultImage = self.drawOnImage(source: resultImage,
                                                        boundingRect: boundingRect,
                                                        faceLandmarkRegions: landmarkRegions)

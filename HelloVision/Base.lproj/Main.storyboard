@@ -104,6 +104,61 @@
             </objects>
             <point key="canvasLocation" x="1712.8" y="1080.8095952023989"/>
         </scene>
+        <!--Object Tracking-->
+        <scene sceneID="UdN-IE-Qn5">
+            <objects>
+                <viewController title="Object Tracking" id="sCk-qe-fMj" customClass="ObjectTrackingViewController" customModule="HelloVision" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zle-YB-7uU"/>
+                        <viewControllerLayoutGuide type="bottom" id="I0o-5a-WoN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gZc-fr-sbW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-3h-y5z">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1T-oX-u0H">
+                                <rect key="frame" x="67" y="234" width="83" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.1450980392" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="BfC-3h-y5z" firstAttribute="centerY" secondItem="gZc-fr-sbW" secondAttribute="centerY" id="AUh-gn-QJD"/>
+                            <constraint firstItem="BfC-3h-y5z" firstAttribute="height" secondItem="gZc-fr-sbW" secondAttribute="height" id="dYT-X3-82M"/>
+                            <constraint firstItem="BfC-3h-y5z" firstAttribute="centerX" secondItem="gZc-fr-sbW" secondAttribute="centerX" id="odC-08-c3a"/>
+                            <constraint firstItem="BfC-3h-y5z" firstAttribute="width" secondItem="gZc-fr-sbW" secondAttribute="width" id="yRw-uD-dl9"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="V5k-5x-meZ" appends="YES" id="Zq3-ry-VOL"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Object Tracking" id="q9O-KB-rlu">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="d3A-E1-O9m">
+                            <connections>
+                                <action selector="resetTapped:" destination="sCk-qe-fMj" id="Hsw-6s-UWk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraView" destination="BfC-3h-y5z" id="IAh-k8-a80"/>
+                        <outlet property="highlightView" destination="d1T-oX-u0H" id="V8J-sG-pvW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTS-R3-V36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="V5k-5x-meZ">
+                    <connections>
+                        <action selector="userTapped:" destination="sCk-qe-fMj" id="1N9-IP-4dp"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2497" y="1081"/>
+        </scene>
         <!--Face Detection-->
         <scene sceneID="anv-d0-hrb">
             <objects>
@@ -267,7 +322,27 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="1CN-hd-9tr" kind="show" id="ssv-Eu-mXn"/>
+                                            <segue destination="1CN-hd-9tr" kind="show" id="Z3d-sB-9yv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Q2u-9j-xCE" style="IBUITableViewCellStyleDefault" id="sKA-L8-rd2">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sKA-L8-rd2" id="IXn-xt-FxH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Object Tracking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q2u-9j-xCE">
+                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="sCk-qe-fMj" kind="show" id="EA2-Fd-HVJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

@@ -13,20 +13,17 @@ class FaceDetectionViewController: UIViewController {
     
     @IBOutlet weak var facesImageView: UIImageView!
     
-    let facesImage = UIImage(named: "faces.jpg")!
-    
-    lazy var detectFaceRequest: VNDetectFaceRectanglesRequest = {
-        return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces)
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let facesImage = UIImage(named: "faces.jpg")!
         guard let facesCIImage = CIImage(image: facesImage)
             else { fatalError("can't create CIImage from UIImage") }
+        let detectFaceRequest: VNDetectFaceRectanglesRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces)
         let detectFaceRequestHandler = VNImageRequestHandler(ciImage: facesCIImage, options: [:])
+        
         do {
-            try detectFaceRequestHandler.perform([self.detectFaceRequest])
+            try detectFaceRequestHandler.perform([detectFaceRequest])
         } catch {
             print(error)
         }

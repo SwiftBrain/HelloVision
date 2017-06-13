@@ -45,7 +45,7 @@ class BarcodesDetectViewController: UIViewController {
         let handler = VNImageRequestHandler(cgImage: barcodeImage.cgImage!, options: [:])
         
         guard let _ = try? handler.perform([barcodeRequest]) else {
-            return print("Could not perform barcode-request!")
+            return print("error")
         }
 
     }
