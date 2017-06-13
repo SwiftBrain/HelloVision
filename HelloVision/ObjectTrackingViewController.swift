@@ -112,7 +112,6 @@ class ObjectTrackingViewController: UIViewController, AVCaptureVideoDataOutputSa
     }
 
     @IBAction func userTapped(_ sender: UITapGestureRecognizer) {
-        print("tapped")
         // get the center of the tap
         self.highlightView?.frame.size = CGSize(width: 120, height: 120)
         self.highlightView?.center = sender.location(in: self.view)
