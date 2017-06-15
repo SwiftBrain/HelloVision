@@ -18,5 +18,5 @@ Vision framework example in iOS 11.
 ![Text Detection](https://cdn-images-1.medium.com/max/1600/1*fNSvBzouHJAVciOiFkbTrA.png)
 
 ### 5. Object Tracking
-https://www.youtube.com/watch?v=QzM0je58-cY
+
 [![Object Tracking](https://img.youtube.com/vi/QzM0je58-cY/0.jpg)](https://www.youtube.com/watch?v=QzM0je58-cY "Object Tracking")
