@@ -9,14 +9,23 @@
 import UIKit
 import Vision
 
-class BarcodesDetectViewController: UIViewController {
+class BarcodesDetectViewController: UIViewController, ImageChooserDelegate {
 
     @IBOutlet weak var result: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var barcodeImage = UIImage(named: "QRCode.png")!
+    let imageChooser = ImageChooser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barcodeImage = UIImage(named: "QRCode.png")!
+        self.imageChooser.delegate = self
+        
+        self.analyze()
+    }
+    
+    func analyze() {
         
         let barcodeRequest = VNDetectBarcodesRequest(completionHandler: {(request, error) in
             
@@ -49,5 +58,14 @@ class BarcodesDetectViewController: UIViewController {
         }
 
     }
-
+    
+    @IBAction func chooseImage(_ sender: Any) {
+        self.imageChooser.choose(viewController: self)
+    }
+    
+    func imageChooser(picked: UIImage) {
+        self.barcodeImage = picked
+        self.imageView.image = picked
+        self.analyze()
+    }
 }

@@ -8,15 +8,23 @@
 
 import UIKit
 import Vision
+import AVFoundation
 
-class FaceDetectionViewController: UIViewController {
+class FaceDetectionViewController: UIViewController, ImageChooserDelegate {
     
     @IBOutlet weak var facesImageView: UIImageView!
+    
+    var facesImage = UIImage(named: "faces.jpg")!
+    let imageChooser = ImageChooser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let facesImage = UIImage(named: "faces.jpg")!
+        self.imageChooser.delegate = self
+        self.analyze()
+    }
+    
+    func analyze() {
         guard let facesCIImage = CIImage(image: facesImage)
             else { fatalError("can't create CIImage from UIImage") }
         let detectFaceRequest: VNDetectFaceRectanglesRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces)
@@ -37,12 +45,21 @@ class FaceDetectionViewController: UIViewController {
     }
     
     func addShapesToFace(forObservations observations: [VNFaceObservation]) {
+        
+        if let sublayers = facesImageView.layer.sublayers {
+            for layer in sublayers {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
+        let imageRect = AVMakeRect(aspectRatio: facesImage.size, insideRect: facesImageView.bounds)
+        
         let layers: [CAShapeLayer] = observations.map { observation in
             
-            let w = observation.boundingBox.size.width * facesImageView.bounds.width
-            let h = observation.boundingBox.size.height * facesImageView.bounds.height
-            let x = observation.boundingBox.origin.x * facesImageView.bounds.width
-            let y = abs(((observation.boundingBox.origin.y * (facesImageView.bounds.height)) - facesImageView.bounds.height)) - h
+            let w = observation.boundingBox.size.width * imageRect.width
+            let h = observation.boundingBox.size.height * imageRect.height
+            let x = observation.boundingBox.origin.x * imageRect.width
+            let y = imageRect.maxY - (observation.boundingBox.origin.y * imageRect.height) - h
             
             print("----")
             print("W: ", w)
@@ -63,4 +80,13 @@ class FaceDetectionViewController: UIViewController {
         }
     }
     
+    @IBAction func chooseImage(_ sender: Any) {
+        self.imageChooser.choose(viewController: self)
+    }
+    
+    func imageChooser(picked: UIImage) {
+        self.facesImage = picked
+        self.facesImageView.image = picked
+        self.analyze()
+    }
 }
