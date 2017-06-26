@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24FBEE6D1EFECC9200D6020E /* ImageChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBEE6C1EFECC9200D6020E /* ImageChooser.swift */; };
 		B8597FB51EE94B7800B71E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8597FB41EE94B7800B71E00 /* AppDelegate.swift */; };
 		B8597FB71EE94B7800B71E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8597FB61EE94B7800B71E00 /* ViewController.swift */; };
 		B8597FBA1EE94B7800B71E00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8597FB81EE94B7800B71E00 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24FBEE6C1EFECC9200D6020E /* ImageChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChooser.swift; sourceTree = "<group>"; };
 		B8597FB11EE94B7800B71E00 /* HelloVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8597FB41EE94B7800B71E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8597FB61EE94B7800B71E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				B8F62C631EECE672008BE757 /* TextDetectionViewController.swift */,
 				B8F62C6D1EEE6A55008BE757 /* ObjectTrackingViewController.swift */,
 				B8597FC61EE9578E00B71E00 /* MobileNet.mlmodel */,
+				24FBEE6C1EFECC9200D6020E /* ImageChooser.swift */,
 				B8597FDB1EE9639000B71E00 /* image.jpg */,
 				B8BC8B7C1EEA6A120029579B /* faces.jpg */,
 				B8F62C5D1EEBC693008BE757 /* face.jpg */,
@@ -182,6 +185,7 @@
 				B8597FE01EE970F100B71E00 /* FaceDetectionViewController.swift in Sources */,
 				B8F62C6E1EEE6A55008BE757 /* ObjectTrackingViewController.swift in Sources */,
 				B8F62C641EECE672008BE757 /* TextDetectionViewController.swift in Sources */,
+				24FBEE6D1EFECC9200D6020E /* ImageChooser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

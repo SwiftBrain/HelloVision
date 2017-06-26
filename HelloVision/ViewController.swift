@@ -9,12 +9,15 @@
 import UIKit
 import Vision
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ImageChooserDelegate {
 
     @IBOutlet weak var result: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     let model = MobileNet()
-    let image = UIImage(named: "image.jpg")!
+    var image = UIImage(named: "image.jpg")!
+    let imageChooser = ImageChooser()
+    var request: VNCoreMLRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,7 @@ class ViewController: UIViewController {
             fatalError("Error")
         }
         
-        let request = VNCoreMLRequest(model: visionModel) { request, error in
+        self.request = VNCoreMLRequest(model: visionModel) { request, error in
             
             if let observations = request.results as? [VNClassificationObservation] {
                 let top5 = observations.prefix(through: 4)
@@ -32,9 +35,17 @@ class ViewController: UIViewController {
             }
         }
         
+        self.analyze()
+        
+        imageChooser.delegate = self
+    }
+    
+    func analyze() {
+        guard let request = self.request else {
+            return
+        }
         let handler = VNImageRequestHandler(cgImage: image.cgImage!)
         try? handler.perform([request])
-        
     }
     
     // MARK: - UI stuff
@@ -47,6 +58,16 @@ class ViewController: UIViewController {
             s.append(String(format: "%d: %@ (%3.2f%%)", i + 1, pred.0, pred.1 * 100))
         }
         result.text = s.joined(separator: "\n")
+    }
+    
+    @IBAction func chooseImage(_ sender: Any) {
+        imageChooser.choose(viewController: self)
+    }
+    
+    func imageChooser(picked: UIImage) {
+        self.image = picked
+        self.imageView.image = picked
+        self.analyze()
     }
 }
 

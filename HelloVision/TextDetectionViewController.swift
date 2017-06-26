@@ -8,15 +8,24 @@
 
 import UIKit
 import Vision
+import AVFoundation
 
-class TextDetectionViewController: UIViewController {
+class TextDetectionViewController: UIViewController, ImageChooserDelegate {
     
     @IBOutlet weak var textImageView: UIImageView!
+    
+    let imageChooser = ImageChooser()
+    var textImage = UIImage(named: "text.jpg")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textImage = UIImage(named: "text.jpg")!
+        self.imageChooser.delegate = self
+        
+        self.analyze()
+    }
+    
+    func analyze() {
         
         let textDetectionRequest = VNDetectTextRectanglesRequest(completionHandler: {(request, error) in
             
@@ -35,12 +44,22 @@ class TextDetectionViewController: UIViewController {
     }
     
     func addShapesToText(forObservations observations: [VNTextObservation]) {
+        
+        if let layers = self.textImageView.layer.sublayers {
+            for layer in layers {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
+        let imageRect = AVMakeRect(aspectRatio: textImage.size, insideRect: textImageView.bounds)
+        
         let layers: [CAShapeLayer] = observations.map { observation in
             
-            let w = observation.boundingBox.size.width * textImageView.bounds.width
-            let h = observation.boundingBox.size.height * textImageView.bounds.height
-            let x = observation.boundingBox.origin.x * textImageView.bounds.width
-            let y = abs(((observation.boundingBox.origin.y * (textImageView.bounds.height)) - textImageView.bounds.height)) - h
+            
+            let w = observation.boundingBox.size.width * imageRect.width
+            let h = observation.boundingBox.size.height * imageRect.height
+            let x = observation.boundingBox.origin.x * imageRect.width + imageRect.origin.x
+            let y = imageRect.maxY - (observation.boundingBox.origin.y * imageRect.height) - h
             
             print("----")
             print("W: ", w)
@@ -60,5 +79,14 @@ class TextDetectionViewController: UIViewController {
             textImageView.layer.addSublayer(layer)
         }
     }
-
+    
+    @IBAction func chooseImage(_ sender: Any) {
+        self.imageChooser.choose(viewController: self)
+    }
+    
+    func imageChooser(picked: UIImage) {
+        self.textImage = picked
+        self.textImageView.image = picked
+        self.analyze()
+    }
 }

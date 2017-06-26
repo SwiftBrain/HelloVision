@@ -9,15 +9,21 @@
 import UIKit
 import Vision
 
-class FaceLandMarksViewController: UIViewController {
+class FaceLandMarksViewController: UIViewController, ImageChooserDelegate {
 
     @IBOutlet weak var faceImageView: UIImageView!
     
-    let faceImage = UIImage(named: "face.jpg")!
+    var faceImage = UIImage(named: "face.jpg")!
+    let imageChooser = ImageChooser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.imageChooser.delegate = self
+        self.analyze()
+    }
+    
+    func analyze() {
         DispatchQueue.global().async {
             self.highlightFaces(for: self.faceImage) { (resultImage) in
                 DispatchQueue.main.async {
@@ -142,6 +148,16 @@ class FaceLandMarksViewController: UIViewController {
         let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return coloredImg
+    }
+    
+    @IBAction func chooseImage(_ sender: Any) {
+        self.imageChooser.choose(viewController: self)
+    }
+    
+    func imageChooser(picked: UIImage) {
+        self.faceImage = picked
+        self.faceImageView.image = picked
+        self.analyze()
     }
     
 }

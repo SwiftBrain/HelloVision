@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qjs-Vb-bWE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qjs-Vb-bWE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zkt-ut-eDK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zkt-ut-eDK">
                                 <rect key="frame" x="75" y="69" width="224" height="224"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -34,8 +35,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Image Analysis" id="LXp-g4-JoL"/>
+                    <navigationItem key="navigationItem" title="Image Analysis" id="LXp-g4-JoL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="NWh-1m-ZDV">
+                            <connections>
+                                <action selector="chooseImage:" destination="BYZ-38-t0r" id="AE9-w5-Yr5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="zkt-ut-eDK" id="D2M-vB-J86"/>
                         <outlet property="result" destination="stO-ai-Az0" id="sL7-M6-5LD"/>
                     </connections>
                 </viewController>
@@ -69,7 +77,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Barcodes Detect" id="lVc-Eb-V3Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="qin-lT-g4y">
+                            <connections>
+                                <action selector="chooseImage:" destination="wHS-GT-K8p" id="ARG-Vo-YNU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="qii-1t-TLj" id="YxI-M9-nvZ"/>
                         <outlet property="result" destination="Ojl-2z-jwR" id="dK4-dY-8Jc"/>
                     </connections>
                 </viewController>
@@ -89,13 +105,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="text.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cY3-5v-Ngf">
-                                <rect key="frame" x="16" y="156" width="343" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cY3-5v-Ngf">
+                                <rect key="frame" x="16" y="72" width="343" height="575"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cY3-5v-Ngf" firstAttribute="top" secondItem="6Il-pN-Mg2" secondAttribute="bottom" constant="8" id="Byy-vo-MFM"/>
+                            <constraint firstItem="cY3-5v-Ngf" firstAttribute="leading" secondItem="lo4-K0-IoF" secondAttribute="leadingMargin" id="ePN-CW-Rc8"/>
+                            <constraint firstItem="cY3-5v-Ngf" firstAttribute="trailing" secondItem="lo4-K0-IoF" secondAttribute="trailingMargin" id="oQv-Mm-Mq5"/>
+                            <constraint firstItem="awR-1S-zup" firstAttribute="top" secondItem="cY3-5v-Ngf" secondAttribute="bottom" constant="20" id="qin-lC-SAe"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Text Detection" id="Ctk-IQ-qbk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="mk8-ac-SeG">
+                            <connections>
+                                <action selector="chooseImage:" destination="1CN-hd-9tr" id="4SG-GO-PCk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="textImageView" destination="cY3-5v-Ngf" id="nmB-uF-sFV"/>
                     </connections>
@@ -171,13 +199,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="faces.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Tf-27o">
-                                <rect key="frame" x="16" y="203" width="343" height="260"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="faces.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Tf-27o">
+                                <rect key="frame" x="16" y="72" width="343" height="575"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jc7-Tf-27o" firstAttribute="trailing" secondItem="ZT5-6B-gBS" secondAttribute="trailingMargin" id="2ln-YE-Tlh"/>
+                            <constraint firstItem="jc7-Tf-27o" firstAttribute="leading" secondItem="ZT5-6B-gBS" secondAttribute="leadingMargin" id="GfU-Zs-eht"/>
+                            <constraint firstItem="jc7-Tf-27o" firstAttribute="top" secondItem="oAI-eC-74X" secondAttribute="bottom" constant="8" id="jJg-XY-mQX"/>
+                            <constraint firstItem="9f7-6J-rj4" firstAttribute="top" secondItem="jc7-Tf-27o" secondAttribute="bottom" constant="20" id="y9U-6s-k2W"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Face Detection" id="GQu-YH-21O">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="3JG-GD-L7z">
+                            <connections>
+                                <action selector="chooseImage:" destination="LTm-5i-NFj" id="dQN-bj-iuq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="faceImageView" destination="2wF-ci-ida" id="ai9-cu-Yuc"/>
                         <outlet property="facesImageView" destination="jc7-Tf-27o" id="FO8-eQ-bQi"/>
@@ -185,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYh-40-eG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-623" y="1075"/>
+            <point key="canvasLocation" x="-623.20000000000005" y="1074.5127436281859"/>
         </scene>
         <!--Face LandMarks-->
         <scene sceneID="a2F-a0-b1p">
@@ -199,20 +239,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="face.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2wF-ci-ida">
-                                <rect key="frame" x="16" y="186" width="343" height="294"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2wF-ci-ida">
+                                <rect key="frame" x="16" y="72" width="343" height="575"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2wF-ci-ida" firstAttribute="leading" secondItem="Bk3-lt-Bby" secondAttribute="leadingMargin" id="YVT-i5-dHn"/>
+                            <constraint firstItem="2wF-ci-ida" firstAttribute="top" secondItem="1Ia-RT-16f" secondAttribute="bottom" constant="8" id="d6O-Wb-Obj"/>
+                            <constraint firstItem="JXz-Ai-hWX" firstAttribute="top" secondItem="2wF-ci-ida" secondAttribute="bottom" constant="20" id="gp8-6Q-BsV"/>
+                            <constraint firstItem="2wF-ci-ida" firstAttribute="trailing" secondItem="Bk3-lt-Bby" secondAttribute="trailingMargin" id="qie-K4-Xgu"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Face LandMarks" id="ybt-mu-ghX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="bFh-bX-IQX">
+                            <connections>
+                                <action selector="chooseImage:" destination="5Xr-lz-d4A" id="K9a-vs-Lfq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="faceImageView" destination="2wF-ci-ida" id="UQU-pI-1FY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QY8-GS-SUK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="1075"/>
+            <point key="canvasLocation" x="160.80000000000001" y="1074.5127436281859"/>
         </scene>
         <!--Vision-->
         <scene sceneID="IaI-k9-XTU">
